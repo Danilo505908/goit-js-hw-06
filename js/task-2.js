@@ -1,15 +1,33 @@
-function makeArray(firstArray, secondArray, maxLength) {
-    const combinedArray = firstArray.concat(secondArray);
-
-    if (combinedArray.length > maxLength) {
-        return combinedArray.slice(0, maxLength);
+class Storage {
+    #items
+    constructor(items) {
+        this.#items = items
     }
-    return combinedArray;
+
+    getItems() {
+    return this.#items
+    }
+
+    addItem(newItem) {
+        this.#items.push(newItem)
+    }
+
+    removeItem(itemToRemove) {
+        const index = this.#items.indexOf(itemToRemove);
+        if (index !== -1) {
+            this.#items.splice(index, 1);
+        }
+    }
 }
 
-console.log(makeArray(["Mango", "Poly"], ["Ajax", "Chelsea"], 3)); 
-console.log(makeArray(["Mango", "Poly", "Houston"], ["Ajax", "Chelsea"], 4)); 
-console.log(makeArray(["Mango"], ["Ajax", "Chelsea", "Poly", "Houston"], 3)); 
-console.log(makeArray(["Earth", "Jupiter"], ["Neptune", "Uranus"], 2)); 
-console.log(makeArray(["Earth", "Jupiter"], ["Neptune", "Uranus"], 4));
-console.log(makeArray(["Earth", "Jupiter"], ["Neptune", "Uranus", "Venus"], 0));
+const storage = new Storage(["Nanitoids", "Prolonger", "Antigravitator"]);
+console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator"]
+
+storage.addItem("Droid");
+console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator", "Droid"]
+
+storage.removeItem("Prolonger");
+console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
+
+storage.removeItem("Scaner");
+console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"] поясни так само я попередню
